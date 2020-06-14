@@ -12,7 +12,7 @@ class HotelModel(db.Model):
     diaria = db.Column(db.Float(precision=2))
     cidade = db.Column(db.String(40))
 
-    
+    #colunas --> atributos
     def __init__(self, hotel_id, nome, avaliacao, diaria, cidade):
         self.hotel_id = hotel_id
         self.nome = nome
@@ -29,10 +29,12 @@ class HotelModel(db.Model):
             'cidade': self.cidade
         }
 
+    #semelhantemente ao @staticmethod, cria métodos que pertencem à classe e não ao objeto
+    #mas com a diferença que, nesse caso, desejo referenciar a classe no método --> cls
     @classmethod
     def findHotel(cls, hotel_id):
         # SELECT * FROM hoteis WHERE hotel_id = $hotel_id ...
-        hotel = cls.query.filter_by(hotel_id=hotel_id).first() #query - recurso do sql alchemy. 
+        hotel = cls.query.filter_by(hotel_id=hotel_id).first() #query.filter_by - recurso do sql alchemy. 
         if hotel:
             return hotel
         return None

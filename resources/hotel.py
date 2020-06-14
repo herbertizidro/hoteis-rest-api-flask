@@ -13,21 +13,25 @@ exemplo hotel
 }
 '''
 
-#exibe todos os hotéis disponíveis
+#exibe todos os hotéis do banco de dados
 class Hoteis(Resource):
     def get(self):
-        # SELECT * FROM hoteis
+        # o mesmo que SELECT * FROM hoteis
         return {'hoteis': [hotel.json() for hotel in HotelModel.query.all()]}
 
 
 #CRUD   
 class Hotel(Resource):
+
+    #analisa as solicitações - define o tipo de dado esperado, se pode ou não ser omitido(required), fornece uma
+    #mensagem de ajuda pro caso de um dado obrigatório não ser informado na requisição
     argumentos = reqparse.RequestParser()
     argumentos.add_argument('nome', type=str, required=True, help="Field 'nome' required.") #campo obrigatório
     argumentos.add_argument('avaliacao')
     argumentos.add_argument('diaria')
     argumentos.add_argument('cidade')
-    
+
+    #métodos GET, POST, PUT e DELETE
     def get(self, hotel_id): #visualizar hotel
         hotel = HotelModel.findHotel(hotel_id)
         if hotel:
@@ -38,8 +42,8 @@ class Hotel(Resource):
     def post(self, hotel_id): #adicionar hotel
         if HotelModel.findHotel(hotel_id):
             return {'message': 'Hotel id <' + hotel_id + '> already exists.'}, 400 #bad request        
-        dados = Hotel.argumentos.parse_args()
-        hotel = HotelModel(hotel_id, **dados) #** kwargs
+        dados = Hotel.argumentos.parse_args() #dados da solicitação
+        hotel = HotelModel(hotel_id, **dados) #passa esses dados por meio de ** kwargs para o modelo que representa a tabela no banco de dados
         
         try:
             hotel.saveHotel()
