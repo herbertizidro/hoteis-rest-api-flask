@@ -23,7 +23,7 @@ class Hoteis(Resource):
 #CRUD   
 class Hotel(Resource):
 
-    #analisa as solicitações - define o tipo de dado esperado, se pode ou não ser omitido(required), fornece uma
+    #para os métodos post e put: analisa as solicitações - define o tipo de dado esperado, se pode ou não ser omitido(required), fornece uma
     #mensagem de ajuda pro caso de um dado obrigatório não ser informado na requisição
     argumentos = reqparse.RequestParser()
     argumentos.add_argument('nome', type=str, required=True, help="Field 'nome' required.") #campo obrigatório
