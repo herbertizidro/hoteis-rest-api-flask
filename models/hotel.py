@@ -2,7 +2,7 @@ from sql_alchemy import db
 
 
 class HotelModel(db.Model):
-    #mapeando a classe para o SQLAlchemy(classe vira tabela)
+    #mapeando a classe para o SQLAlchemy(classe representa tabela)
     #nome da tabela
     __tablename__ = 'hoteis'
     #colunas
