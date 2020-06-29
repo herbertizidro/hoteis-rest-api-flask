@@ -50,7 +50,7 @@ class Hotel(Resource):
         except:
             return {'message': 'An internal error ocurred trying to save hotel.'}, 500 #internal server error
         
-        return hotel.json(), 200 #success
+        return hotel.json(), 201 #created
     
     def put(self, hotel_id): #atualizar hotel
         dados = Hotel.argumentos.parse_args()
