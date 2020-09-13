@@ -12,7 +12,7 @@ api = Api(app)
 def dbCreate():
     db.create_all()
 
-#adicionando os recursos(classes) criados e suas urls à instância 'api'
+#adicionando os recursos(classes) criados e suas urls ao objeto api
 api.add_resource(Hoteis, '/hoteis')
 api.add_resource(Hotel, '/hoteis/<string:hotel_id>') #espera receber um parâmetro string
 
