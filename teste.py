@@ -5,6 +5,8 @@ URL = 'http://127.0.0.1:5000'
 
 body = {"nome": "ABC Palace", "avaliacao": 5.0,"diaria": 450, "cidade": "São Paulo - SP"}
 
+#LOGIN e LOGOUT será adicionado em breve ...
+
 #POST
 novo_hotel = requests.post(URL + '/hoteis/abc_palace', data=body)
 
